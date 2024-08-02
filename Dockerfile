@@ -25,7 +25,7 @@ RUN apt-get update && \
     chmod 755 ${HOME} ${DOWNLOAD_DIR}
 
 # Copy application files
-COPY files/ ${HOME}
+COPY / ${HOME}
 
 # Expose the WebDAV port
 EXPOSE ${WEBDAV_PORT}
