@@ -16,10 +16,10 @@ ENV MEGA_PASS SNcNx225
 ADD https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd_1.7.0-10.1_amd64.deb ./
 
 RUN \
- apk add --no-cache --virtual=build-dependencies \
+ apt-get install \
 		wget \
 		curl \
-		unzip && \
+		unzip -y && \
  wget -q https://downloads.rclone.org/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
  unzip ./rclone-v${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
  mv ./rclone-*-linux-${PLATFORM_ARCH}/rclone /usr/bin
