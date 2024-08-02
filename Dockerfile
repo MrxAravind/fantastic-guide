@@ -22,4 +22,4 @@ RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 
 RUN mega-webdav ./
 
-CMD python -m http.server 7000
+CMD python3 -m http.server 7000
