@@ -1,6 +1,9 @@
 FROM ubuntu:22.04
 
 EXPOSE 4443
+EXPOSE 8080
+
+
 
 ENV MEGA_MAIL xiyof57961@czilou.com
 ENV MEGA_PASS SNcNx225
@@ -12,7 +15,7 @@ RUN apt-get update; \
     apt-get install  ./megacmd*.deb -y; \
     apt-get clean; \
     rm  ./megacmd*.deb; \
-    apt install python3 python-pip;
+    apt install python3 python3-pip;
 
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
