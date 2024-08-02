@@ -15,5 +15,4 @@ def keep_alive():
     t.start()
 
 
-keep_alive()
 run()
