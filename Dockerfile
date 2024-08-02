@@ -25,9 +25,9 @@ RUN apt-get update; \
 
 RUN \
  apt-get install wget curl unzip -y && \
- wget -q https://downloads.rclone.org/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
- unzip ./rclone-v${RCLONE_VERSION}-linux-${PLATFORM_ARCH}.zip && \
- mv ./rclone-*-linux-${PLATFORM_ARCH}/rclone /usr/bin
+ wget -q https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
+ unzip ./rclone-current-linux-amd64.zip && \
+ mv ./rclone-*-linux-amd64/rclone /usr/bin
 
  
 COPY start.sh ./
