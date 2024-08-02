@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
+FROM python:latest
 
+EXPOSE 7000
 EXPOSE 4443
 
 ENV MEGA_MAIL xiyof57961@czilou.com
@@ -17,4 +19,6 @@ RUN apt-get update; \
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 
 
-CMD mega-webdav  Drive/ 
+RUN mega-webdav ./
+
+CMD python -m http.server 7000
