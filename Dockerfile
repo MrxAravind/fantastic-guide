@@ -14,4 +14,4 @@ RUN apt-get update; \
 
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
-CMD mega-help
+CMD mega-webdav /
