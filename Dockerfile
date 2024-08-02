@@ -1,5 +1,10 @@
 FROM ubuntu:22.04
 
+ENV MEGA_MAIL
+ENV MEGA_PASS 
+
+
+
 ADD https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd_1.7.0-10.1_amd64.deb ./
 
 RUN apt-get update; \
