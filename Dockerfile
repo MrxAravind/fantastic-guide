@@ -21,6 +21,6 @@ RUN apt-get update; \
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 
 COPY start.sh ./
-
+COPY keep_alive.py ./
 
 CMD  bash start.sh
