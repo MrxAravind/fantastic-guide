@@ -1,34 +1,23 @@
-FROM ubuntu:22.04
+FROM debian:buster-slim
+ARG TARGETPLATFORM
 
-# Set environment variables
-ENV DOWNLOAD_DIR=/data/
-ENV HOME=/home/mega
-ENV WEBDAV_PORT=8080
-ENV EXTERNAL_HOST=localhost
-ENV EXTERNAL_PORT=8080
-ENV NEW_FILE_PERMISSIONS=600
-ENV NEW_FOLDER_PERMISSIONS=700
-ENV TRANSFER_LIST_LIMIT=50
-ENV PATH_DISPLAY_SIZE=80
-ENV INPUT_TIMEOUT=0.0166
-ENV FILE_UPDATE_TIMEOUT=0.1
+LABEL maintainer="spidy@gmail.com"
 
-# Update and upgrade Ubuntu packages, install dependencies, and MegaCMD
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y wget && \
-    wget https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd_1.7.0-10.1_amd64.deb && \
-    apt-get install -y ./megacmd_1.7.0-10.1_amd64.deb && \
-    apt-get clean && \
-    rm ./megacmd_1.7.0-10.1_amd64.deb && \
-    mkdir -p ${HOME} ${DOWNLOAD_DIR} && \
-    chmod 755 ${HOME} ${DOWNLOAD_DIR}
+    apt-get install curl gnupg2 -y && \
+    echo path-include /usr/share/doc/megacmd/* > /etc/dpkg/dpkg.cfg.d/docker
 
-# Copy application files
-COPY / ${HOME}
+ADD /megacmd/mc.sh /
 
-# Expose the WebDAV port
-EXPOSE ${WEBDAV_PORT}
+RUN bash -c "/mc.sh $TARGETPLATFORM" && \
+    apt install ./megacmd.deb -y && \
+    rm -rf ./megacmd.deb && \
+    rm -rf ./mc.sh && \
+    apt-get remove -y curl && \
+    apt-get clean
 
-# Default command
-ENTRYPOINT ["mega-webdav" "./"]
+COPY /megacmd/entrypoint.sh /
+COPY /library.sh /
+
+ENTRYPOINT bash ./entrypoint.sh
+CMD /bin/bash
