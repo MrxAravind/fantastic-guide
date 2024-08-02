@@ -13,6 +13,7 @@ ADD https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd_1.7.0-10.1_amd64.deb 
 
 RUN apt-get update; \
     apt-get install  ./megacmd*.deb -y; \
+    apt-get install curl; \
     apt-get clean; \
     rm  ./megacmd*.deb; \
     apt install python3 python3-pip -y;
