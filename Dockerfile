@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
-ENV MEGA_MAIL
-ENV MEGA_PASS 
+ENV MEGA_MAIL xiyof57961@czilou.com
+ENV MEGA_PASS SNcNx225
 
 
 
