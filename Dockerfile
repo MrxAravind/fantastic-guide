@@ -1,6 +1,5 @@
 FROM ubuntu:22.04
 
-EXPOSE 7000
 EXPOSE 4443
 
 ENV MEGA_MAIL xiyof57961@czilou.com
@@ -13,8 +12,7 @@ RUN apt-get update; \
     apt-get install  ./megacmd*.deb -y; \
     apt-get clean; \
     rm  ./megacmd*.deb; \
-    apt install python3
-    
+    apt install python3;
 
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
