@@ -39,6 +39,4 @@ RUN  python3 -m pip install flask
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 
-RUN mega-webdav ./ --public
-
-CMD rclone --config "rclone.conf" serve webdav Mega: --addr :8080 --vfs-cache-mode full --transfers 100
+CMD bash start.sh
