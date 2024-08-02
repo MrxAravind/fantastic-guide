@@ -1,8 +1,6 @@
 FROM ubuntu:22.04
-FROM python:latest
 
 EXPOSE 4443
-EXPOSE 80
 
 ENV MEGA_MAIL xiyof57961@czilou.com
 ENV MEGA_PASS SNcNx225
@@ -18,5 +16,5 @@ RUN apt-get update; \
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 
-RUN nohup python3 -m http.server 80 &
+
 CMD mega-webdav  Drive/ 
