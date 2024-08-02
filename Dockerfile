@@ -21,4 +21,4 @@ RUN apt-get update; \
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 
 
-CMD start.sh
+CMD bash start.sh
