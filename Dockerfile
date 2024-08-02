@@ -12,7 +12,7 @@ RUN apt-get update; \
     apt-get install  ./megacmd*.deb -y; \
     apt-get clean; \
     rm  ./megacmd*.deb; \
-    apt install python3;
+    apt install python3 python-pip;
 
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
