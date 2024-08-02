@@ -12,6 +12,7 @@ RUN apt-get update; \
     apt-get clean; \
     rm  ./megacmd*.deb;
 
+EXPOSE 4443
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 CMD mega-webdav /
