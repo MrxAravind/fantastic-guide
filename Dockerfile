@@ -1,23 +1,12 @@
-FROM debian:buster-slim
-ARG TARGETPLATFORM
+FROM ubuntu:22.04
 
-LABEL maintainer="spidy@gmail.com"
+ADD https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd_1.7.0-10.1_amd64.deb ./
 
-RUN apt-get update && \
-    apt-get install curl gnupg2 -y && \
-    echo path-include /usr/share/doc/megacmd/* > /etc/dpkg/dpkg.cfg.d/docker
+RUN apt-get update; \
+    apt-get install  ./megacmd*.deb -y; \
+    apt-get clean; \
+    rm  ./megacmd*.deb;
 
-ADD /megacmd/mc.sh /
 
-RUN bash -c "/mc.sh $TARGETPLATFORM" && \
-    apt install ./megacmd.deb -y && \
-    rm -rf ./megacmd.deb && \
-    rm -rf ./mc.sh && \
-    apt-get remove -y curl && \
-    apt-get clean
-
-COPY /megacmd/entrypoint.sh /
-COPY /library.sh /
-
-ENTRYPOINT bash ./entrypoint.sh
-CMD /bin/bash
+RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
+CMD mega-help
