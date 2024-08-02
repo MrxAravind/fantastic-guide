@@ -17,10 +17,12 @@ RUN apt-get update; \
     rm  ./megacmd*.deb; \
     apt install python3 python3-pip -y;
 
+COPY start.sh ./
+
+COPY keep_alive.py ./
+
+RUN  python3 -m pip install flask
 
 RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
-
-COPY start.sh ./
-COPY keep_alive.py ./
 
 CMD  bash start.sh
