@@ -41,4 +41,4 @@ RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
 
 RUN mega-webdav ./ --public
 
-CMD rclone --config "rclone.conf" serve webdav --addr :8080 --transfers 100
+CMD rclone --config "rclone.conf" serve webdav Mega: --addr :8080 --transfers 100
