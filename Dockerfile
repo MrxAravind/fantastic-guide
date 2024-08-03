@@ -13,7 +13,7 @@ ENV MEGA_MAIL xiyof57961@czilou.com
 ENV MEGA_PASS SNcNx225
 
 
-ADD https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd_1.7.0-10.1_amd64.deb ./
+ADD https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd-xUbuntu_22.04_amd64.deb ./
 
 
  
