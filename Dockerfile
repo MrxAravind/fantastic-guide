@@ -1,3 +1,5 @@
+#Rclone Copy
+
 FROM ubuntu:22.04
 
 
@@ -5,8 +7,6 @@ FROM ubuntu:22.04
 ENV PLATFORM_ARCH="amd64"
 ARG RCLONE_VERSION="current"
 EXPOSE 8080
-
-
 
 
 ENV MEGA_MAIL xiyof57961@czilou.com
