@@ -1,5 +1,4 @@
 FROM ubuntu:latest 
-FROM xhofe/alist:latest
 
 
 
