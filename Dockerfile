@@ -7,7 +7,7 @@ FROM xhofe/alist:latest
 ENV PLATFORM_ARCH="amd64"
 ENV MEGA_MAIL="xiyof57961@czilou.com"
 ENV MEGA_PASS="SNcNx225"
-EXPOSE 8080
+EXPOSE 5244
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
