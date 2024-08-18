@@ -1,42 +1,32 @@
-#Rclone Copy
-
 FROM ubuntu:22.04
 
-
-# global environment settings
+# Global environment settings
 ENV PLATFORM_ARCH="amd64"
-ARG RCLONE_VERSION="current"
+ENV MEGA_MAIL="xiyof57961@czilou.com"
+ENV MEGA_PASS="SNcNx225"
 EXPOSE 8080
 
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    python3 \
+    python3-pip && \
+    apt-get clean
 
-ENV MEGA_MAIL xiyof57961@czilou.com
-ENV MEGA_PASS SNcNx225
+# Download and install MEGA CMD
+RUN curl -o /tmp/megacmd.deb https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd-xUbuntu_22.04_amd64.deb && \
+    apt-get install /tmp/megacmd.deb -y && \
+    rm /tmp/megacmd.deb
 
-
-ADD https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd-xUbuntu_22.04_amd64.deb ./
-
-
- 
-RUN apt-get update; \
-    apt-get install  ./megacmd*.deb -y; \
-    apt-get clean; \
-    rm  ./megacmd*.deb; \
-    apt install python3 curl python3-pip -y;
-
-RUN \
- apt-get install wget curl unzip -y && \
- wget -q https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
- unzip ./rclone-current-linux-amd64.zip && \
- mv ./rclone-*-linux-amd64/rclone /usr/bin
-
- 
+# Copy scripts
 COPY start.sh ./
-
 COPY keep_alive.py ./
-COPY rclone.conf ./
 
-RUN  python3 -m pip install flask
+# Install Python packages
+RUN python3 -m pip install flask
 
-RUN mega-login ${MEGA_MAIL} ${MEGA_PASS}
+# Login to MEGA account (Consider moving this to start.sh)
+RUN mega-login "${MEGA_MAIL}" "${MEGA_PASS}"
 
-CMD bash start.sh
+# Start script
+CMD ["bash", "start.sh"]
