@@ -1,4 +1,7 @@
 FROM ubuntu:22.04
+FROM xhofe/alist:latest
+
+
 
 # Global environment settings
 ENV PLATFORM_ARCH="amd64"
@@ -14,9 +17,6 @@ RUN apt-get update && apt-get install -y \
     apt-get clean
 
 # Download and install MEGA CMD
-RUN curl -o /tmp/megacmd.deb https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd-xUbuntu_22.04_amd64.deb && \
-    apt-get install /tmp/megacmd.deb -y && \
-    rm /tmp/megacmd.deb
 
 # Copy scripts
 COPY start.sh ./
